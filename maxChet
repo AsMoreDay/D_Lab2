@@ -1,0 +1,40 @@
+#include<stdio.h>
+void main()
+{
+	int n;
+	int i,j;
+	int A[100][100];
+	int b[100];
+	int MaxChet;
+	//	Ввод размера матрицы.
+	printf(" Hello!\n Enter the number of lines\\columns of matrix, please.\n\n");
+	scanf_s("%d",&n);
+	fflush(stdin);
+	//	Ввод матрицы одновременно с поиском максимальных чётных элементов  в строках.
+	printf("\n Ok. Now, enter matrix %d*%d, please.\n\n",n,n);
+	for(i=0;i<n;++i){
+		MaxChet=0;
+		for(j=0;j<n;++j){
+			scanf_s("%d",&A[i][j]);
+			if((!(A[i][j]&1))&&(A[i][j]>MaxChet))
+				MaxChet=A[i][j];
+		}
+		b[i]=MaxChet;
+	}
+	//	Вывод матрицы.
+	for(i=0;i<n;++i){
+		printf("\n ");
+		for(j=0;j<n;++j)
+			printf("%6d",A[i][j]);
+		printf("\n");
+	}
+	//	Вывод требуемой последовательности.
+	printf("\n");
+	printf(" The required sequence:\n\n");
+	for (i=0;i<n;++i)
+		printf("%6d",b[i]);
+	printf("\n\n Goodbye!\n\n");
+	//	Инвариант в данной задаче:
+	//	b[i] - максимальный среди пройденных элементов строки с номером i.
+
+}
