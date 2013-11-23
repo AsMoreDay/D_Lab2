@@ -11,10 +11,16 @@ void main()
 	int MaxChet;//Переменная, обозначающая максимальный чётный элемент в строке с номером i;
 	int b[N];//Искомая последвательность;
 	printf("\n Enter count of strings/columns of matrix, please:\n\n");
-	scanf_s("%d", &n);
+	while ((scanf_s("%d", &n) == 0) || (n > 100) || (n <= 0)){
+		fflush(stdin);
+		printf("\n ReEnter INTEGER count of strings/columns of matrix, which MORE THAN 0 and LESS THAN 100, PLEASE:\n\n");
+	}
 	printf("\n\n Enter matrix %d x %d, please:\n\n", n, n);
 	for (i = 0; i<n; ++i){
-		scanf_s("%d", &A[i][1]);
+		while ((scanf_s("%d", &A[i][1])) == 0){
+			fflush(stdin);
+			printf("\n\n ReEnter INTEGER element of matrix, PLEASE:\n\n");
+		}
 		if (A[i][1] & 1)
 			b[i] = A[i][1];
 		else
@@ -27,7 +33,7 @@ void main()
 		if (b[i] == -1)
 			b[i] = 0;
 	}
-	Sleep(3000);
+	Sleep(2000);
 	system("cls");
 	Sleep(1000);
 	printf("\n\n Required sequence:\n\n");
