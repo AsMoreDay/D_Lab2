@@ -1,40 +1,45 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <locale.h>
+#include <windows.h>
+#define N 100
 void main()
 {
-	int n;
-	int i,j;
-	int A[100][100];
-	int b[100];
-	int MaxChet;
-	//	Ввод размера матрицы.
-	printf(" Hello!\n Enter the number of lines\\columns of matrix, please.\n\n");
-	scanf_s("%d",&n);
-	fflush(stdin);
-	//	Ввод матрицы одновременно с поиском максимальных чётных элементов  в строках.
-	printf("\n Ok. Now, enter matrix %d*%d, please.\n\n",n,n);
-	for(i=0;i<n;++i){
-		MaxChet=0;
-		for(j=0;j<n;++j){
-			scanf_s("%d",&A[i][j]);
-			if((!(A[i][j]&1))&&(A[i][j]>MaxChet))
-				MaxChet=A[i][j];
+	setlocale(LC_ALL, "Russian");
+	int n;//количество строк/столбцов в массиве;
+	int A[N][N];//Массив;
+	int i, j;//
+	int MaxChet;//Переменная, обозначающая максимальный чётный элемент в строке с номером i;
+	int b[N];//Искомая последвательность;
+	printf("\n Enter count of strings/columns of matrix, please:\n\n");
+	scanf_s("%d", &n);
+	printf("\n\n Enter matrix %d x %d, please:\n\n", n, n);
+	for (i = 0; i<n; ++i){
+		scanf_s("%d", &A[i][1]);
+		if (A[i][1] & 1)
+			b[i] = A[i][1];
+		else
+			b[i] = -1;
+		for (j = 1; j<n; ++j){
+			scanf_s("%d", &A[i][j]);
+				if ((!(A[i][j] & 1)) && (A[i][j]>b[i]))
+					b[i] = A[i][j];
 		}
-		b[i]=MaxChet;
+		if (b[i] == -1)
+			b[i] = 0;
 	}
-	//	Вывод матрицы.
-	for(i=0;i<n;++i){
-		printf("\n ");
-		for(j=0;j<n;++j)
-			printf("%6d",A[i][j]);
-		printf("\n");
+	Sleep(3000);
+	system("cls");
+	Sleep(1000);
+	printf("\n\n Required sequence:\n\n");
+	for (i = 0; i < n; ++i){
+		Sleep(500);
+		printf("%6d", b[i]);
 	}
-	//	Вывод требуемой последовательности.
-	printf("\n");
-	printf(" The required sequence:\n\n");
-	for (i=0;i<n;++i)
-		printf("%6d",b[i]);
-	printf("\n\n Goodbye!\n\n");
-	//	Инвариант в данной задаче:
-	//	b[i] - максимальный среди пройденных элементов строки с номером i.
 
+	Sleep(1500);
+
+	printf("\n\n Инвариант в данной задаче:\n\n");
+	Sleep(1000);
+	printf(" b[i] - максимальный  чётный среди пройденных элементов строки с номером i, если такие элементы были, а если не было, то b[i] = -1.\n\n");
+	Sleep(1000);
 }
